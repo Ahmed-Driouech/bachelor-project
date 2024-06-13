@@ -11,7 +11,6 @@ function App()
 {
   const { ethers } = require("ethers");
   const [provider, setProvider] = useState(null);
-  const [signer, setSigner] = useState(null);
   const [account, setAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [candidates, setCandidates] = useState([]);
@@ -52,11 +51,9 @@ function App()
   {
     if(window.ethereum)
     {
-      const _provider =  new ethers.BrowserProvider(window.ethereum); //check the provider
-      setProvider(_provider);
+      const provider =  new ethers.BrowserProvider(window.ethereum); //check the provider
       await provider.send("eth_requestAccounts",[]); //request the users accounts from the provider
-      const _signer = await provider.getSigner(); //get address of current connected account
-      setSigner(_signer);
+      const signer = await provider.getSigner(); //get address of current connected account
       const contractInstance = new ethers.Contract(contractAddress, contractAbi, signer); // get instance of the voting smart contract
       
       return contractInstance;
@@ -86,14 +83,20 @@ function App()
 
   async function setPartyVoteStatus()
   {
-    const contractInstance = await getContractInstance();
+    const provider =  new ethers.BrowserProvider(window.ethereum); //check the provider
+    await provider.send("eth_requestAccounts",[]); //request the users accounts from the provider
+    const signer = await provider.getSigner(); //get address of current connected account
+    const contractInstance = new ethers.Contract(contractAddress, contractAbi, signer); // get instance of the voting smart contract
     const voteStatus = await contractInstance.votedParty(await signer.getAddress());
     setVotedParty(voteStatus);
   }
 
   async function setCandidateVoteStatus()
   {
-    const contractInstance = await getContractInstance();
+    const provider =  new ethers.BrowserProvider(window.ethereum); //check the provider
+    await provider.send("eth_requestAccounts",[]); //request the users accounts from the provider
+    const signer = await provider.getSigner(); //get address of current connected account
+    const contractInstance = new ethers.Contract(contractAddress, contractAbi, signer); // get instance of the voting smart contract
     const voteStatus = await contractInstance.votedCandidate(await signer.getAddress());
     setVotedCandidate(voteStatus);
   }
@@ -101,7 +104,10 @@ function App()
 
   async function getPartyIndex()
   {
-    const contractInstance = await getContractInstance();
+    const provider =  new ethers.BrowserProvider(window.ethereum); //check the provider
+    await provider.send("eth_requestAccounts",[]); //request the users accounts from the provider
+    const signer = await provider.getSigner(); //get address of current connected account
+    const contractInstance = new ethers.Contract(contractAddress, contractAbi, signer); // get instance of the voting smart contract
     const index = contractInstance.partyIndex(await signer.getAddress());
     setPartyIndex(index);
   }
