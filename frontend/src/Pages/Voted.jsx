@@ -10,24 +10,27 @@ const Voted = (props) => {
             <div class="text-left">
                 <h2>Election Results:</h2>
             </div>
-            <table id="myTable" className="candidates-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Party Name</th>
-                        <th>Party Votes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortedParties.map((party, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{party.name}</td>
-                            <td>{party.voteCount}</td>
+            <div className="candidates-table-wrapper">
+                <table id="myTable" className="candidates-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Party Name</th>
+                            <th>Party Votes</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortedParties.map((party, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{party.name}</td>
+                                <td>{party.voteCount}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <br/>
             <button className="login-button" onClick={async () => {await props.resetFunction(); navigate('/');}}>Reset Contract</button>
         </div>
     )

@@ -32,36 +32,37 @@ const VotingParty = (props) => {
                     <h2>Choose a party: </h2>
                 </div>
                 )}
-    
-            <table id="myTable" className="candidates-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Party Name</th>
-                        <th>Party Votes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.parties.map((party, index) => (
-                        <tr key={index}>
-                            <td>
-                                <label className="radio-container">
-                                    <input 
-                                        type="radio" 
-                                        name="party" 
-                                        value={party.index} 
-                                        checked={selectedParty === party.index}
-                                        onChange={() => handleRadioChange(party.index)} 
-                                        />
-                                    <span className="checkmark"></span>
-                                </label>
-                            </td>
-                            <td>{party.name}</td>
-                            <td>{party.voteCount}</td>
+            <div className="candidates-table-wrapper">
+                <table id="myTable" className="candidates-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Party Name</th>
+                            <th>Party Votes</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {props.parties.map((party, index) => (
+                            <tr key={index}>
+                                <td>
+                                    <label className="radio-container">
+                                        <input 
+                                            type="radio" 
+                                            name="party" 
+                                            value={party.index} 
+                                            checked={selectedParty === party.index}
+                                            onChange={() => handleRadioChange(party.index)} 
+                                            />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td>{party.name}</td>
+                                <td>{party.voteCount}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <br/>
 
             {props.showButton ? 

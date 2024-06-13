@@ -35,6 +35,41 @@
       "artifacts": [
         "Voting"
       ]
+    },
+    "/Users/ahmeddriouech/bachelor-project/sepolia-testnet-deployment/contracts/Voting.sol": {
+      "lastModificationDate": 1718274357571,
+      "contentHash": "042f3d36d749e6a2d2c7d841ac1c8ea8",
+      "sourceName": "contracts/Voting.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.18"
+      ],
+      "artifacts": [
+        "Voting"
+      ]
     }
   }
 }

@@ -43,6 +43,7 @@
   justify-content: center;
   height: 100vh;
   background-color: #f1f1f1;
+  overflow: auto;
 }
 
 .connected-header {
@@ -78,11 +79,27 @@
   text-align: center;
 }
 
+.candidates-table-wrapper {
+  width: 50%; 
+  max-height: 400px; 
+  overflow: auto; 
+}
 
 .candidates-table {
   border-collapse: collapse;
-  width: 50%;
+  width: 100%;
   text-align:center;
+  overflow: auto;
+}
+.candidates-table tr {
+  display: table;
+  width: 99%;
+  table-layout: fixed;
+}
+.candidates-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1; 
 }
 
 .candidates-table td {
