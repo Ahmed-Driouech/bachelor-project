@@ -73,7 +73,6 @@ constructor(string[] memory _parties, string[][] memory _candidateNames) {
 
     function voteParty(uint256 _partyIndex) public {
         require(!votedParty[msg.sender], "You have already voted on a party.");
-        require(_partyIndex < parties.length, "Invalid party index.");
 
         parties[_partyIndex].voteCount++;
         votedParty[msg.sender] = true;
@@ -82,8 +81,7 @@ constructor(string[] memory _parties, string[][] memory _candidateNames) {
     }
 
     function voteCandidate(uint256 _candidateIndex, uint256 _partyIndex) public {
-        require(!votedCandidate[msg.sender], "You have already voted.");
-        require(_candidateIndex < parties[_partyIndex].partyCandidates.length, "Invalid candidate index.");
+        require(!votedCandidate[msg.sender], "You have already voted for a candidate.");
 
         parties[_partyIndex].partyCandidates[_candidateIndex].voteCount++;
         votedCandidate[msg.sender] = true;

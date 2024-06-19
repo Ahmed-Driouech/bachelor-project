@@ -10,7 +10,6 @@ import './App.css';
 function App() 
 {
   const { ethers } = require("ethers");
-  const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [candidates, setCandidates] = useState([]);
@@ -18,19 +17,17 @@ function App()
   const [partyIndex, setPartyIndex] = useState("");
   const [votedParty, setVotedParty] = useState(false);
   const [votedCandidate, setVotedCandidate] = useState(false);
+  const [requestPending, setRequestPending] = useState(false);
 
   useEffect(() => 
     {
       setPartyVoteStatus();
       if(votedParty)
       {
-        getPartyIndex();        
+        getPartyIndex();
+        getAllCandidates(partyIndex);        
       }
 
-      if(partyIndex !== "")
-      {
-        getAllCandidates(partyIndex);
-      }
       getAllParties();
 
       if(window.ethereum)
@@ -145,9 +142,7 @@ function App()
   {
     if(accounts.length > 0 && account !== accounts[0]) //check whether account is set to the current account thats logged in
     {
-      setAccount(accounts[0]);
-      setPartyVoteStatus();
-      setCandidateVoteStatus();
+     connectToMetamask();
     }
     else
     {
@@ -160,10 +155,17 @@ function App()
   {
     if(window.ethereum) //check whether any wallet is installed
     {
+      if(requestPending)
+        {
+          console.log("there is already a request pending...");
+          return;
+        }
+
+      setRequestPending(true);
+
       try
       {
         const provider =  new ethers.BrowserProvider(window.ethereum) //check the provider
-        setProvider(provider);
         await provider.send("eth_requestAccounts",[]); //request the users accounts from the provider
         const signer = await provider.getSigner(); //get current connected account
         const address = (await signer).address; //get wallet address of current account
@@ -175,6 +177,10 @@ function App()
       catch(err)
       {
         console.error(err);
+      }
+      finally
+      {
+        setRequestPending(false);
       }
     }
     else
