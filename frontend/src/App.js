@@ -6,7 +6,7 @@ import VotingParty from './Pages/VotingPartyPage';
 import VotingCandidate from './Pages/VotingCandidatePage'; 
 import Voted from './Pages/Voted'; 
 import './App.css';
-
+//verified voting foundation!!
 function App() 
 {
   const { ethers } = require("ethers");

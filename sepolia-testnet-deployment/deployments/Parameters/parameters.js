@@ -87,6 +87,13 @@ const candidates= [
     ["Mona Keijzer", "BBB"],
     ["Henk Vermeer", "BBB"],
     ["Cor Pierik", "BBB"],
+
+    //NSC
+    ["Pieter Omtzigt","NSC"],
+    ["Nicolien van Vroonhoven-kok","NSC"],
+    ["Judith Uitermark","NSC"],
+    ["Caspar Veldkamp","NSC"],
+    ["Sabdra Palmen","NSC"]
 ];
 
 export {parties, candidates};
