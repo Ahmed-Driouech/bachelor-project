@@ -155,14 +155,6 @@ function App()
   {
     if(window.ethereum) //check whether any wallet is installed
     {
-      if(requestPending)
-        {
-          console.log("there is already a request pending...");
-          return;
-        }
-
-      setRequestPending(true);
-
       try
       {
         const provider =  new ethers.BrowserProvider(window.ethereum) //check the provider
@@ -177,10 +169,6 @@ function App()
       catch(err)
       {
         console.error(err);
-      }
-      finally
-      {
-        setRequestPending(false);
       }
     }
     else
